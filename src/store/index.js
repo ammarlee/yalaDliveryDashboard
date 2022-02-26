@@ -11,6 +11,7 @@ export default new Vuex.Store({
     currentuser: {},
     user: {},
     all:[],
+    all2:[],
     // polisas:JSON.parse(localStorage.getItem('shipment')),
     polisas: [],
     distrbuters: [
