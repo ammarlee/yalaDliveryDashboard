@@ -10,6 +10,7 @@ export default new Vuex.Store({
     printingData: [],
     currentuser: {},
     user: {},
+    all:[],
     // polisas:JSON.parse(localStorage.getItem('shipment')),
     polisas: [],
     distrbuters: [
