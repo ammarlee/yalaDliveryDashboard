@@ -8,7 +8,7 @@ class categories {
         return axios().post("category-edit", category)
     }
     static deleteCategory(categoryId) {
-        return axios().delete(`user/${categoryId}`)
+        return axios().post(`delete-category/${categoryId}`)
     }
     static getCategory(resturantId) {
         return axios().get(`resturant/categories/${resturantId}`)

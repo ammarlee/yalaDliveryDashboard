@@ -14,10 +14,10 @@
 
       <v-spacer></v-spacer>
       <div class="ml-4">
-        <v-btn icon to="/shipping/profile" v-if="cuurentuser">
+        <v-btn icon to="/shipping/profile" v-if="currentUser">
           <img
-            v-if="cuurentuser.img"
-            :src="cuurentuser.img"
+            v-if="currentUser.img"
+            :src="currentUser.img"
             width="30"
             height="30"
             class="rounded-circle "
@@ -35,8 +35,8 @@ export default {
   props: ["isDashboard"],
   mounted() {},
   computed: {
-    cuurentuser() {
-      return this.$store.getters.cuurentUser;
+    currentUser() {
+      return this.$store.getters.currentUser;
     },
     notificationsLength() {
       return this.$store.getters.notifications.filter(notification => {

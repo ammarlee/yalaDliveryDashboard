@@ -10,6 +10,9 @@ class profile {
     static changePassword(newPassword) {
         return axios().put("Employee/change-password", newPassword)
     }
+    static getProfile(profiletId) {
+        return axios().get(`user/${profiletId}`)
+    }
     
 }
 export default profile

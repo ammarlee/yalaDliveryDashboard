@@ -4,7 +4,6 @@ import Localbase from "localbase";
 let db = new Localbase("db");
 
 Vue.use(Vuex);
-import axios from "axios";
 export default new Vuex.Store({
   state: {
     printingData: [],
@@ -100,7 +99,7 @@ export default new Vuex.Store({
       return state.notifications;
     },
     isAuthenticated: state => !!state.token,
-    cuurentUser() {
+    currentUser() {
       var u = localStorage.getItem("user");
       if (u) return JSON.parse(u);
     }
