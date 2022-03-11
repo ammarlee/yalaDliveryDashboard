@@ -25,7 +25,7 @@
               :src="item.img"
               class="pa-2 rounded-circle"
             />
-            <v-icon v-else medium x-large>mdi-account-circle</v-icon>
+            <v-icon class="accountIcon" v-else>mdi-account-circle</v-icon>
           </template>
 
           <template v-slot:[`item.actions`]="{ item }">

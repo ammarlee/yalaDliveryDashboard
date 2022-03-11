@@ -9,8 +9,7 @@
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="mycurrentUser.username"
-            :rules="[allRules.required]"
-            hint="مطلوب 6 أحرف على الاقل"
+            :rules="[allRules.required, allRules.minNameLen(4)]"
             dense
             outlined
             label="الاسم"
@@ -20,8 +19,7 @@
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="mycurrentUser.email"
-            :rules="[allRules.required]"
-            hint="مطلوب 6 أحرف على الاقل"
+            :rules="[allRules.required, allRules.validEmail]"
             dense
             outlined
             label="البريد الا‘لكتروني"
@@ -33,8 +31,7 @@
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="mycurrentUser.phone"
-            :rules="[allRules.required]"
-            hint="مطلوب 6 أحرف على الاقل"
+            :rules="[allRules.required, allRules.length(9)]"
             dense
             outlined
             label="الهاتف"
@@ -44,8 +41,7 @@
         <v-col cols="12" sm="6">
           <v-text-field
             v-model="mycurrentUser.address"
-            :rules="[allRules.required]"
-            hint="مطلوب 6 أحرف على الاقل"
+            :rules="[allRules.required, allRules.minNameLen(8)]"
             dense
             outlined
             label="العنوان"
@@ -83,7 +79,6 @@ export default {
         const res = await profileApi.editInfo(user);
         console.log(res);
         this.$store.dispatch("changeUserInfo", res.data);
-        // this.userInfo = { ...res.data.user };
         this.$emit("ProfileInfo", { ...res.data.user })
         this.loading = false;
         this.$emit("closeDilogInfo");

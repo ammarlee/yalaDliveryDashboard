@@ -25,7 +25,7 @@
               :src="item.img"
               class="pa-2 rounded-circle"
             />
-            <v-icon v-else x-large>mdi-account-circle</v-icon>
+            <v-icon v-else class="accountIcon">mdi-account-circle</v-icon>
           </template>
           <template v-slot:[`item.actions`]="{ item }">
             <v-icon color="success" medium @click="editDriver(item)">mdi-pen</v-icon>

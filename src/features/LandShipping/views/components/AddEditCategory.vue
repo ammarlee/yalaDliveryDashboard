@@ -10,8 +10,7 @@
           <v-col cols="12" sm="12">
             <v-text-field
               v-model="mycategories.name"
-              :rules="[allRules.required]"
-              hint="مطلوب 6 أحرف على الاقل"
+              :rules="[allRules.required, allRules.minNameLen(4)]"
               dense
               outlined
               label="اسم الصنف"
@@ -23,8 +22,7 @@
           <v-col cols="12" sm="12">
             <v-text-field
               v-model="mycategories.description"
-              :rules="[allRules.required]"
-              hint="مطلوب 6 أحرف على الاقل"
+              :rules="[allRules.required, allRules.minNameLen(10)]"
               dense
               outlined
               label="وصف الصنف"

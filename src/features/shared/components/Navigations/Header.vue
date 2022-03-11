@@ -22,7 +22,7 @@
             height="30"
             class="rounded-circle "
           />
-          <v-icon v-else medium to="/shipping/profile" x-large>mdi-account-circle</v-icon>
+          <v-icon v-else medium to="/shipping/profile" class="accountIcon">mdi-account-circle</v-icon>
         </v-btn>
       </div>
     </v-app-bar>

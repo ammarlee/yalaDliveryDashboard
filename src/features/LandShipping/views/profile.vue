@@ -33,7 +33,7 @@
             <v-list-item>
               <v-list-item-title>
                 <div>
-                  <v-icon large>mdi-account-circle</v-icon>
+                  <v-icon class="accountIcon">mdi-account-circle</v-icon>
                   <v-btn text @click="ref" class=" font-weight-bold "
                     >تغيير صورة الملف الشخصي</v-btn
                   >
@@ -52,7 +52,7 @@
         </v-menu>
       </div>
       <div v-else class="position-relative d-flex justify-content-center flex-column">
-        <v-icon style="font-size:100px">mdi-account-circle</v-icon>
+        <v-icon class="accountIcon">mdi-account-circle</v-icon>
         <v-icon button color="black" style="margin:0 auto ;width:30px" @click="ref"
           >mdi-camera</v-icon
         >
@@ -86,7 +86,7 @@
       </div>
       <div class="d-flex align-items-center justify-content-center changePassword">
         <p class="m-0 font-bold">هل تريد تغيير كلمة السر</p>
-        <v-btn class="info--text font-weight-bold" text @click="openChangePass">أضغط هنا</v-btn>
+        <v-btn class="info--text font-weight-bold" text @click="changePass = true, changePassword={}">أضغط هنا</v-btn>
       </div>
     </v-card>
     <v-dialog width="500" v-model="changePass" persistent>
@@ -177,10 +177,6 @@ export default {
       this.dilogInfo = true;
       this.mycurrentUser = { ...this.userInfo };
     },
-    openChangePass() {
-      this.changePass = true;
-      this.changePassword = {};
-    }
   }
 };
 </script>
@@ -203,5 +199,8 @@ export default {
     padding: 5px;
     border-radius: 50%;
   }
+}
+.accountIcon {
+  font-size: 4rem !important;
 }
 </style>

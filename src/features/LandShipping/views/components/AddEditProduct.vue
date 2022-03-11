@@ -10,7 +10,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="myProducts.name"
-              :rules="[allRules.required, allRules.minNameLen(6)]"
+              :rules="[allRules.required, allRules.minNameLen(4)]"
               dense
               outlined
               label="اسم الاكلة"
@@ -20,8 +20,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="myProducts.description"
-              :rules="[allRules.required, allRules.minNameLen(6)]"
-              hint="مطلوب 6 أحرف على الاقل"
+              :rules="[allRules.required, allRules.minNameLen(8)]"
               dense
               outlined
               label="وصف الاكلة"
@@ -59,6 +58,7 @@
               rounded
               solo
               dense
+              :rules="[allRules.required]"
               :items="categoryData"
               item-text="name"
               item-value="_id"
@@ -72,6 +72,7 @@
               rounded
               solo
               dense
+              :rules="[allRules.required]"
               :items="selectSize"
               item-text="sizeName"
               item-value="value"

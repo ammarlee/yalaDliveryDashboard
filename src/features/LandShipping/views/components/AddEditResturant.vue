@@ -12,7 +12,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="user.username"
-              :rules="[allRules.required, allRules.minNameLen(6)]"
+              :rules="[allRules.required, allRules.minNameLen(3)]"
               dense
               outlined
               label="اسم المطعم"
@@ -22,7 +22,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="user.name"
-              :rules="[allRules.required, allRules.minNameLen(6)]"
+              :rules="[allRules.required, allRules.minNameLen(4)]"
               dense
               outlined
               label="اسم صاحب المطعم"
@@ -35,7 +35,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="user.phone"
-              :rules="[allRules.required, allRules.length(11)]"
+              :rules="[allRules.required, allRules.length(9)]"
               dense
               outlined
               label="رقم الهاتف"
@@ -121,7 +121,7 @@ export default {
         } catch (err) {
           console.log(err);
           this.loading = false;
-          this.toastErrorMsg("حدث خطأ اثناء تعديل بيانات المطعم");
+          this.toastErrorMsg(err.response.data.errors.msgs.ar ||"حدث خطأ اثناء تعديل بيانات المطعم");
         }
       } else {
         try {
@@ -134,16 +134,11 @@ export default {
           this.$emit("pushInResturant", res.data.user)
         } catch (err) {
           this.loading = false;
-          let Errormsg = err.response.data.errors.msgs.ar || "حدث خطأ اثناء إضافة المطعم";
-          this.$dialog.notify.error(Errormsg, {
-            position: "bottom-right",
-            timeout: 3000
-          });
+          this.toastErrorMsg(err.response.data.errors.msgs.ar ||"حدث خطأ اثناء إضافة المطعم");
         }
       }
     }
   }
 };
 </script>
-
 <style lang="scss" scoped></style>

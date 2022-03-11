@@ -10,19 +10,19 @@
           :mycategories="mycategories"
           :resturantId="resturantId"
           :categoryData="categoryData"
-          @pushInCategory="AddNewCategory($event)"
-          @EditCategory="editCategory($event)"
+          @pushInCategory="AddToArr($event, categoryData)"
+          @EditCategory="EditArr($event, categoryData)"
         ></addEditCategory>
       </v-dialog>
       <div class="d-flex justify-content-right mt-10 mb-5">
-        <AddBtn :content="'إضافة صنف'" @submit="openAddCategory"></AddBtn>
+        <AddBtn :content="'إضافة صنف'" @submit=" addCategory = true, mycategories= {}"></AddBtn>
       </div>
       <categoryTable
         v-if="categoryData"
         :categoryData="categoryData"
         @openDialogEditCategory="addCategory = true"
         @mySingleEditCategory="mycategories = $event"
-        @deleteCategory="deleteItemCategory($event)"
+        @deleteCategory="DeleteObjFromArr(categoryData, $event)"
         :loadingMain="loadingMainData"
       ></categoryTable>
     </v-card>
@@ -57,31 +57,10 @@ export default {
       this.loadingMainData = false;
     } catch (error) {
       this.loadingMainData = false;
-
       console.log(error);
     }
   },
   methods: {
-    openAddCategory() {
-      this.addCategory = true;
-      this.mycategories = {};
-    },
-    deleteItemCategory(itemId) {
-      this.categoryData = this.categoryData.filter(e => {
-        console.log(e);
-        return e._id !== itemId;
-      });
-    },
-    AddNewCategory(newCategory) {
-      this.categoryData.push(newCategory);
-    },
-    editCategory(itemEdit) {
-      let index = this.categoryData.findIndex(i => {
-        return i._id === itemEdit._id;
-      });
-      console.log(index);
-      this.categoryData.splice(index, 1, itemEdit);
-    }
   }
 };
 </script>

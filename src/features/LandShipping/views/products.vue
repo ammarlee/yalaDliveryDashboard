@@ -11,19 +11,19 @@
           :productData="productData"
           :categoryData="categoryData"
           :resturantId="resturantId"
-          @EditProduct="editProduct($event)"
-          @AddCategory="addCategory($event)"
+          @EditProduct="EditArr($event, productData)"
+          @AddCategory="AddToArr($event, productData)"
         ></AddEditProduct>
       </v-dialog>
       <div class="d-flex justify-content-right mt-10 mb-5">
-        <AddBtn :content="'إضافة اكلة'" @submit="openAddProduct"></AddBtn>
+        <AddBtn :content="'إضافة اكلة'" @submit="addProduct = true, myProducts = {}"></AddBtn>
       </div>
       <productTable
         v-if="productData"
         :productData="productData"
         @openDilog="addProduct = true"
         @myProductsEdit="myProducts = $event"
-        @productId="deleteProduct($event)"
+        @productId="DeleteObjFromArr(productData, $event)"
         :loadingMain="loadingMainData"
       ></productTable>
     </v-card>
@@ -68,25 +68,6 @@ export default {
     }
   },
   methods: {
-    openAddProduct() {
-      this.addProduct = true;
-      this.myProducts = {};
-    },
-    editProduct(editItem) {
-      let index = this.productData.findIndex(i => {
-        return i._id === editItem._id;
-      });
-      this.productData.splice(index, 1, editItem);
-    },
-    addCategory(addItem) {
-      this.productData.push(addItem);
-    },
-    deleteProduct(id) {
-      console.log(id);
-      this.productData = this.productData.filter(e => {
-        return e._id !== id;
-      });
-    }
   }
 };
 </script>
