@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="d-flex justify-content-right mt-10 mb-5">
-      <AddBtn :content="'إضافة كابتن'" @submit="openAddDriver"></AddBtn>
+      <AddBtn :content="'إضافة كابتن'" @submit="addDriver = true, driver= {}"></AddBtn>
     </div>
     <v-dialog v-model="addDriver" width="1000" persistent>
       <AddEditDriver
-        @pushInDriverList="AddNewDiver($event)"
+        @pushInDriverList="AddToArr($event, driverData)"
         @closeDialogAddDriver="addDriver = false"
-        @itemEditing="editDriver($event)"
+        @itemEditing="EditArr($event, driverData)"
         :driver="driver"
       ></AddEditDriver>
     </v-dialog>
@@ -16,7 +16,7 @@
       :driver="driver"
       @DriverInfo="driver = $event"
       :driverData="driverData"
-      @deleteDriver="delDriver($event)"
+      @deleteDriver="DeleteObjFromArr(driverData, $event)"
       :loadingMain="loadingMainData"
     ></DriverTable>
   </div>
@@ -39,24 +39,6 @@ export default {
     };
   },
   methods: {
-    openAddDriver() {
-      this.addDriver = true;
-      this.driver = {};
-    },
-    AddNewDiver(item) {
-      this.driverData.push(item);
-    },
-    editDriver(item) {
-      let index = this.driverData.findIndex(i => {
-        return i._id === item._id;
-      });
-      this.driverData.splice(index, 1, item);
-    },
-    delDriver(id) {
-      this.driverData = this.driverData.filter(e => {
-        return e._id !== id;
-      });
-    }
   },
   async mounted() {
     try {
@@ -71,5 +53,4 @@ export default {
   }
 };
 </script>
-
 <style lang="scss" scoped></style>

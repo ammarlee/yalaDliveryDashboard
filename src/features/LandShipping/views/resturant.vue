@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="d-flex justify-content-right mt-10 mb-5">
-      <AddBtn :content="'اضافة مطعم'" @submit="addResturant"></AddBtn>
+      <AddBtn :content="'اضافة مطعم'" @submit="(openDilog = true), (user = {})"></AddBtn>
     </div>
     <v-dialog v-model="openDilog" width="600" persistent>
       <AddEditResturant
         :data="data"
         :user="user"
         @closeDilogResturant="openDilog = false"
-        @EditResturant="editResturant($event)"
-        @pushInResturant="AddNewResturant($event)"
+        @EditResturant="EditArr($event, data)"
+        @pushInResturant="AddToArr($event, data)"
       ></AddEditResturant>
     </v-dialog>
 
@@ -35,7 +35,7 @@
         <v-data-table :loading="loadingMainData" :headers="headers" :items="data" :search="search">
           <template v-slot:[`item.img`]="{ item }">
             <img width="100px" height="100px" v-if="item.img" :src="item.img" class="pa-2" />
-            <v-icon v-else color="black">mdi-fireplace</v-icon>
+            <v-icon v-else color="black" class="accountIcon">mdi-fireplace</v-icon>
           </template>
           <template v-slot:[`item.action`]="{ item }">
             <v-icon color="success" medium @click="refImgResturant(item)">mdi-camera</v-icon>
@@ -182,10 +182,6 @@ export default {
         this.openAddImg = true;
       }
     },
-    addResturant() {
-      this.openDilog = true;
-      this.user = {};
-    },
     edit(item) {
       this.openDilog = true;
       this.user = { ...item };
@@ -201,10 +197,7 @@ export default {
         console.log(res);
         this.loading = false;
         this.openDelete = false;
-        this.data = this.data.filter(e => {
-          console.log(e);
-          return e._id !== this.deletedId;
-        });
+        this.DeleteObjFromArr(this.data, this.deletedId);
         this.ToasteSuccessMsg("تم مسح المطعم بنجاح");
       } catch (err) {
         console.log(err);
@@ -225,27 +218,13 @@ export default {
         this.loading = false;
         this.openAddImg = false;
         let itemImg = res.data.user;
-        let indexx = this.data.findIndex(i => {
-          return i._id === itemImg._id;
-        });
-        console.log(indexx);
-        this.data.splice(indexx, 1, itemImg);
-        this.ToasteSuccessMsg("تم اضافة صورة صورة بنجاح");
+        this.EditArr(itemImg, this.data);
+        this.ToasteSuccessMsg("تم اضافة صورة صورة المطعم بنجاح");
       } catch (err) {
         console.log(err);
         this.loading = false;
-        this.toastErrorMsg("يوجد خطأ اثناء اضافة صورة للموظف");
+        this.toastErrorMsg("يوجد خطأ اثناء اضافة صورة للمطعم");
       }
-    },
-    AddNewResturant(newResturant) {
-      this.data.push(newResturant);
-    },
-    editResturant(itemEdit) {
-      let index = this.data.findIndex(i => {
-        return i._id === itemEdit._id;
-      });
-      console.log(index);
-      this.data.splice(index, 1, itemEdit);
     }
   },
   async mounted() {
@@ -263,4 +242,5 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+</style>

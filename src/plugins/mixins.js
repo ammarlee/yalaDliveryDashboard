@@ -8,14 +8,15 @@ export default {
     };
   },
   methods: {
-    addToArr(arr, element) {
-      if (arr.length == 0) {
-        arr = [element];
-      } else this.$set(arr, arr.length, element);
-    },
+    // addToArr(arr, element) {
+    //   if (arr.length == 0) {
+    //     arr = [element];
+    //   } else this.$set(arr, arr.length, element);
+    // },
     updateArr(arr, element) {
       var i = this.entities.indexOf(this.entities.filter(e => e.id == element.id)[0]);
       if (arr.length == 0) arr.push({});
+
       this.$set(arr, i, element);
     },
     round: function(num, percesion) {
@@ -95,7 +96,24 @@ export default {
         position: "bottom-right",
         timeout: 3000
       });
-    }
-
+    },
+    AddToArr(dataObj, arr) {
+      arr.push(dataObj);
+      console.log("done Add");
+    },
+    EditArr(dataObj, arr) {
+      let index = arr.findIndex(i => {
+        return i._id === dataObj._id;
+      });
+      arr.splice(index, 1, dataObj);
+      console.log("done");
+    },
+    DeleteObjFromArr(arr, id) {
+      let index = arr.findIndex(i => {
+        return i._id === id;
+      });
+      arr.splice(index, 1);
+      console.log("done delete");
+    },
   }
 };

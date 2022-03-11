@@ -10,7 +10,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.username"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.minNameLen(4)]"
               dense
               outlined
               label="اسم الكابتن"
@@ -20,7 +20,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.email"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.validEmail]"
               dense
               outlined
               label="البريد الإلكتروني"
@@ -30,7 +30,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.address"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.minNameLen(4)]"
               dense
               outlined
               label="العنوان"
@@ -42,7 +42,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.idNum"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.length(8)]"
               dense
               outlined
               label="رقم الهوية"
@@ -52,7 +52,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.homeNum"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.length(2)]"
               dense
               outlined
               label="رقم البيت"
@@ -62,7 +62,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.locationNum"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.length(8)]"
               dense
               outlined
               label="رقم الموقع"
@@ -74,7 +74,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.motoType"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.length(3)]"
               dense
               outlined
               label="رقم الموتوسيكل"
@@ -84,7 +84,7 @@
           <v-col cols="12" sm="4" class="pb-0">
             <v-text-field
               v-model="driver.phone"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.length(8)]"
               dense
               outlined
               label="الهاتف"

@@ -114,17 +114,17 @@ export default {
             {
               href: "/shipping/resturant",
               title: " إنشاء حساب مطعم",
-              icon: "fa fa-utensils"
+              icon: "mdi-silverware-variant"
             },
             {
               href: "/shipping/employees",
               title: " إنشاء حساب موظف",
-              icon: "fa fa-user"
+              icon: "mdi-account"
             },
             {
               href: "/shipping/jobApplicants",
               title: "المتقدمين علي وظائف",
-              icon: "fas fa-users-cog"
+              icon: "mdi-account-group"
             }
           ]
         }

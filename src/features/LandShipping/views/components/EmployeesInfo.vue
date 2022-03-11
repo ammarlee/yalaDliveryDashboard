@@ -10,7 +10,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="user.username"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.minNameLen(4)]"
               dense
               outlined
               label="اسم الموظف"
@@ -20,7 +20,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="user.phone"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.length(9)]"
               dense
               outlined
               label="رقم الهاتف"
@@ -33,7 +33,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="user.email"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.validEmail]"
               dense
               outlined
               label="البريد الإلكتروني"
@@ -44,6 +44,7 @@
             <v-autocomplete
               rounded
               solo
+              :rules="[allRules.required]"
               dense
               :items="selectRole"
               item-text="nameRole"
@@ -58,7 +59,7 @@
           <v-col cols="12" sm="6">
             <v-text-field
               v-model="user.address"
-              :rules="[allRules.required]"
+              :rules="[allRules.required, allRules.minNameLen(4)]"
               dense
               outlined
               label="العنوان"
@@ -71,9 +72,11 @@
               v-model="user.password"
               :rules="[allRules.required]"
               dense
+               :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show ? 'text' : 'password'"
+              @click:append="show = !show"
               outlined
               label="كلمة السر"
-              type="password"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -101,14 +104,13 @@ export default {
     return {
       selectRole: [{ nameRole: "user" }, { nameRole: "master" }, { nameRole: "guide" }],
       valid: false,
-      loading: false
+      loading: false,
+      show: false
     };
   },
   methods: {
     async addEditEmployee() {
-      console.log(this.user);
       if (this.user._id) {
-        console.log(this.user._id);
         try {
           this.loading = true;
           const res = await employeesApi.editEmployees(this.user);

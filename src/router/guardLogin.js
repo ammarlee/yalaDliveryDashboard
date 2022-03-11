@@ -8,8 +8,6 @@ import store from "../store";
         next()
       } else {
         console.log(from);
-        // from.fullPath
-        // next("/")
         router.push(-1)
         console.log(to);
       }

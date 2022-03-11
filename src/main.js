@@ -8,6 +8,7 @@ import AddImg from "./features/LandShipping/views/components/AddImg.vue"
 import AddBtn from "./features/LandShipping/views/components/AddBtn.vue"
 import Mixins from "./plugins/mixins";
 import Filters from "./plugins/filters";
+import './assets/global.css';
 import "./plugins/components";
 import "./plugins/vendors";
 // import "@/assets/global.css"
